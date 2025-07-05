@@ -33,44 +33,99 @@
         .tab-panel.active {
             display: block;
         }
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
         @media print {
-            body {
+            html, body {
+                font-size: 10pt;
+                background-color: #ffffff !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            header, footer, #mobile-menu-button, #generate-pdf-button, #skills-tabs-container, #experience-tabs-container {
+            header, footer, #mobile-menu-button, #hero-buttons, #skills-tabs-container, #experience-tabs-container {
                 display: none !important;
             }
+            main {
+                padding: 1in !important;
+                margin: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
             section {
-                margin-bottom: 1.5rem !important;
+                margin-bottom: 2rem !important;
                 padding-top: 0 !important;
                 page-break-inside: avoid;
+            }
+            .print-header {
+                display: block !important;
+                text-align: center;
+                border-bottom: 2px solid #e2e8f0;
+                padding-bottom: 1rem;
+                margin-bottom: 2rem;
+            }
+            .print-header h1 {
+                font-size: 24pt;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+            }
+            .print-header p {
+                font-size: 12pt;
+                color: #475569;
+            }
+            .print-contact-info {
+                display: flex !important;
+                justify-content: center;
+                gap: 1.5rem;
+                font-size: 10pt;
+                margin-top: 0.5rem;
+            }
+            .section-title-print {
+                font-size: 14pt;
+                font-weight: bold;
+                border-bottom: 1px solid #e2e8f0;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+                text-align: left;
             }
             .tab-panel {
                 display: block !important;
                 box-shadow: none !important;
-                border: 1px solid #e2e8f0;
-                padding: 1rem;
+                border: none !important;
+                padding: 0 !important;
             }
             .bg-white, .bg-white\/80 {
                 box-shadow: none !important;
-                border: 1px solid #e2e8f0;
+                border: none !important;
             }
             h2 {
-                padding-top: 1.5rem;
+                display: none;
             }
-            a {
-                color: #1e293b !important;
-                text-decoration: none;
+            section > p {
+                display: none;
             }
-            .contact-info-print {
-                display: flex !important;
-                justify-content: center;
-                gap: 1.5rem;
-                margin-bottom: 2rem;
+            #summary p {
+                display: block;
+                text-align: left;
+            }
+            #skills .tab-panel {
+                border: 1px solid #e2e8f0;
+                padding: 1rem !important;
+            }
+            #experience .tab-panel {
+                 margin-bottom: 1.5rem;
+            }
+            #education .grid {
+                grid-template-columns: 1fr !important;
+            }
+            #education .bg-white {
+                 border: 1px solid #e2e8f0;
             }
         }
-        .contact-info-print {
+        .print-header, .print-contact-info {
             display: none;
         }
     </style>
@@ -104,14 +159,24 @@
     </header>
 
     <main class="container mx-auto px-6 py-8 md:py-16">
+        <div class="print-header">
+            <h1>Satvinder Kaur Channa</h1>
+            <p>Senior Mainframe & Tandem Systems Specialist</p>
+            <div class="print-contact-info">
+                <span>kaur2211@gmail.com</span>
+                <span>linkedin.com/in/satvinder-kaur-chana-b563513b</span>
+                <span>+91 9000 4040 21</span>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section class="text-center mb-16 md:mb-24">
             <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Senior Mainframe & Tandem Systems Specialist</h1>
             <p class="text-xl md:text-2xl text-slate-500">Banking & Telecommunications</p>
             
-            <div class="mt-8 flex flex-col justify-center items-center gap-6">
+            <div id="hero-buttons" class="mt-8 flex flex-col justify-center items-center gap-6">
                 <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-slate-600">
-                    <a href="mailto:kaur2211@gmail.com" class="flex items-center gap-2 hover:text-slate-900 transition-colors">
+                    <a id="email-link" href="#" class="flex items-center gap-2 hover:text-slate-900 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                         kaur2211@gmail.com
                     </a>
@@ -124,19 +189,22 @@
                         +91 9000 4040 21
                     </span>
                 </div>
-                <button id="generate-pdf-button" class="mt-4 bg-slate-800 text-white font-bold py-2 px-6 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    Download as PDF
-                </button>
+                <div class="flex gap-4 mt-4">
+                    <button id="share-button" class="bg-slate-800 text-white font-bold py-2 px-6 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+                        Share / QR Code
+                    </button>
+                    <button id="generate-pdf-button" class="bg-slate-800 text-white font-bold py-2 px-6 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Download as PDF
+                    </button>
+                </div>
             </div>
         </section>
 
         <!-- Professional Summary -->
         <section id="summary" class="max-w-4xl mx-auto mb-16 md:mb-24 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center mb-8">Professional Summary</h2>
-            <div class="contact-info-print">
-                <span>kaur2211@gmail.com</span> | <span>linkedin.com/in/satvinder-kaur-chana-b563513b</span> | <span>+91 9000 4040 21</span>
-            </div>
+            <h2 class="section-title-print">Professional Summary</h2>
             <p class="text-lg text-slate-700 leading-relaxed text-center">
                 A highly accomplished and dedicated software engineering professional with over 18 years of comprehensive experience in the analysis, design, development, and support of high-availability systems. Proven expertise in managing the full software development lifecycle for mission-critical applications within the demanding Banking and Telecommunications sectors. Specializes in legacy system modernization, complex data migrations, and enhancing core financial transaction and billing platforms. A strategic problem-solver and team mentor, adept at bridging the gap between business requirements and technical solutions to deliver robust, scalable, and efficient software.
             </p>
@@ -144,7 +212,7 @@
 
         <!-- Core Competencies / Skills -->
         <section id="skills" class="mb-16 md:mb-24 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center mb-4">Core Competencies</h2>
+            <h2 class="section-title-print">Core Competencies</h2>
             <p class="text-lg text-slate-600 text-center mb-8 max-w-4xl mx-auto">This section provides an interactive overview of my technical skills. Click on a category tab to see a detailed list of technologies. This format allows for a quick and clear assessment of my capabilities across different platforms and toolsets.</p>
             
             <div class="max-w-5xl mx-auto">
@@ -166,7 +234,7 @@
 
         <!-- Professional Experience -->
         <section id="experience" class="mb-16 md:mb-24 scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Professional Experience</h2>
+            <h2 class="section-title-print">Professional Experience</h2>
             <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">This section details my key projects and accomplishments at Tata Consultancy Services. Click on a project tab to explore my direct contributions to significant initiatives in the telecom and banking sectors.</p>
             
             <div class="max-w-5xl mx-auto">
@@ -210,7 +278,7 @@
 
         <!-- Education & Certifications -->
         <section id="education" class="scroll-mt-20">
-            <h2 class="text-3xl font-bold text-center mb-12">Education & Certifications</h2>
+            <h2 class="section-title-print">Education & Certifications</h2>
             <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">My formal education provided the foundation for my career, while continuous learning through certifications has kept my skills sharp and relevant in the ever-evolving technology landscape. This section outlines my academic degrees and professional certifications.</p>
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
                 
@@ -274,6 +342,23 @@
             <p class="text-sm mt-2">&copy; 2025 Satvinder Kaur</p>
         </div>
     </footer>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="modal-content bg-white rounded-lg shadow-2xl p-8 max-w-sm w-full text-center transform scale-95">
+            <h3 class="text-2xl font-bold mb-4">Share this Resume</h3>
+            <div id="qr-code-container" class="mb-6 flex justify-center"></div>
+            <p class="text-slate-600 mb-6">Scan the QR code or use the options below to share.</p>
+            <div class="flex flex-col gap-4">
+                <button id="copy-link-button" class="w-full bg-slate-200 text-slate-800 font-bold py-3 px-4 rounded-lg hover:bg-slate-300 transition-colors">Copy Link</button>
+                <button id="web-share-button" class="w-full bg-slate-800 text-white font-bold py-3 px-4 rounded-lg hover:bg-slate-700 transition-colors">Share Now</button>
+            </div>
+            <button id="close-modal-button" class="absolute top-4 right-4 text-slate-500 hover:text-slate-800 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -363,6 +448,93 @@
                     window.print();
                 });
             }
+
+            // Email Obfuscation & Template
+            const emailLink = document.getElementById('email-link');
+            if(emailLink) {
+                emailLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const user = 'kaur2211';
+                    const domain = 'gmail.com';
+                    const subject = encodeURIComponent("Opportunity Inquiry - Satvinder Kaur's Resume");
+                    const body = encodeURIComponent("Hello Satvinder,\n\nI came across your interactive resume and am impressed with your experience. I would like to discuss a potential opportunity.\n\nPlease let me know a good time to connect.\n\nBest regards,");
+                    window.location.href = `mailto:${user}@${domain}?subject=${subject}&body=${body}`;
+                });
+            }
+
+            // Share Modal Logic
+            const shareButton = document.getElementById('share-button');
+            const shareModal = document.getElementById('share-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const copyLinkButton = document.getElementById('copy-link-button');
+            const webShareButton = document.getElementById('web-share-button');
+            const qrCodeContainer = document.getElementById('qr-code-container');
+
+            if (shareButton) {
+                shareButton.addEventListener('click', () => {
+                    // Generate QR Code
+                    const url = window.location.href;
+                    qrCodeContainer.innerHTML = ''; // Clear previous QR
+                    const qrCodeImg = document.createElement('img');
+                    qrCodeImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+                    qrCodeImg.alt = 'QR Code';
+                    qrCodeImg.classList.add('mx-auto');
+                    qrCodeContainer.appendChild(qrCodeImg);
+
+                    // Show Modal
+                    shareModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        shareModal.querySelector('.modal-overlay').classList.add('opacity-100');
+                        shareModal.querySelector('.modal-content').classList.remove('scale-95');
+                    }, 10);
+
+                    // Check for Web Share API support
+                    if (navigator.share) {
+                        webShareButton.style.display = 'block';
+                    } else {
+                        webShareButton.style.display = 'none';
+                    }
+                });
+            }
+
+            function closeModal() {
+                shareModal.querySelector('.modal-overlay').classList.remove('opacity-100');
+                shareModal.querySelector('.modal-content').classList.add('scale-95');
+                setTimeout(() => {
+                    shareModal.classList.add('hidden');
+                }, 300);
+            }
+
+            if(closeModalButton) closeModalButton.addEventListener('click', closeModal);
+            if(shareModal) shareModal.addEventListener('click', (e) => {
+                if (e.target === shareModal) {
+                    closeModal();
+                }
+            });
+
+            if(copyLinkButton) copyLinkButton.addEventListener('click', () => {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    copyLinkButton.textContent = 'Link Copied!';
+                    setTimeout(() => {
+                        copyLinkButton.textContent = 'Copy Link';
+                    }, 2000);
+                });
+            });
+
+            if(webShareButton && navigator.share) {
+                webShareButton.addEventListener('click', async () => {
+                    try {
+                        await navigator.share({
+                            title: 'Interactive Resume | Satvinder Kaur',
+                            text: 'Check out this interactive resume for Satvinder Kaur.',
+                            url: window.location.href,
+                        });
+                    } catch (err) {
+                        console.error('Share failed:', err);
+                    }
+                });
+            }
+
         });
     </script>
 
