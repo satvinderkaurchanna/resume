@@ -33,6 +33,46 @@
         .tab-panel.active {
             display: block;
         }
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            header, footer, #mobile-menu-button, #generate-pdf-button, #skills-tabs-container, #experience-tabs-container {
+                display: none !important;
+            }
+            section {
+                margin-bottom: 1.5rem !important;
+                padding-top: 0 !important;
+                page-break-inside: avoid;
+            }
+            .tab-panel {
+                display: block !important;
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0;
+                padding: 1rem;
+            }
+            .bg-white, .bg-white\/80 {
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0;
+            }
+            h2 {
+                padding-top: 1.5rem;
+            }
+            a {
+                color: #1e293b !important;
+                text-decoration: none;
+            }
+            .contact-info-print {
+                display: flex !important;
+                justify-content: center;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+        }
+        .contact-info-print {
+            display: none;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -41,7 +81,7 @@
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-slate-900">
-                Satvinder Kaur Channa
+                Satvinder Kaur
             </div>
             <div class="hidden md:flex space-x-8">
                 <a href="#summary" class="text-slate-600 hover:text-slate-900 transition">Summary</a>
@@ -68,11 +108,35 @@
         <section class="text-center mb-16 md:mb-24">
             <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Senior Mainframe & Tandem Systems Specialist</h1>
             <p class="text-xl md:text-2xl text-slate-500">Banking & Telecommunications</p>
+            
+            <div class="mt-8 flex flex-col justify-center items-center gap-6">
+                <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-slate-600">
+                    <a href="mailto:kaur2211@gmail.com" class="flex items-center gap-2 hover:text-slate-900 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        kaur2211@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/satvinder-kaur-chana-b563513b" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-slate-900 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        LinkedIn
+                    </a>
+                    <span class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        +91 9000 4040 21
+                    </span>
+                </div>
+                <button id="generate-pdf-button" class="mt-4 bg-slate-800 text-white font-bold py-2 px-6 rounded-full hover:bg-slate-700 transition-colors flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Download as PDF
+                </button>
+            </div>
         </section>
 
         <!-- Professional Summary -->
         <section id="summary" class="max-w-4xl mx-auto mb-16 md:mb-24 scroll-mt-20">
             <h2 class="text-3xl font-bold text-center mb-8">Professional Summary</h2>
+            <div class="contact-info-print">
+                <span>kaur2211@gmail.com</span> | <span>linkedin.com/in/satvinder-kaur-chana-b563513b</span> | <span>+91 9000 4040 21</span>
+            </div>
             <p class="text-lg text-slate-700 leading-relaxed text-center">
                 A highly accomplished and dedicated software engineering professional with over 18 years of comprehensive experience in the analysis, design, development, and support of high-availability systems. Proven expertise in managing the full software development lifecycle for mission-critical applications within the demanding Banking and Telecommunications sectors. Specializes in legacy system modernization, complex data migrations, and enhancing core financial transaction and billing platforms. A strategic problem-solver and team mentor, adept at bridging the gap between business requirements and technical solutions to deliver robust, scalable, and efficient software.
             </p>
@@ -291,6 +355,14 @@
             // Setup both tab sections
             setupTabs('skills-tabs-container', 'skills-panels-container');
             setupTabs('experience-tabs-container', 'experience-panels-container');
+
+            // PDF Generation
+            const pdfButton = document.getElementById('generate-pdf-button');
+            if(pdfButton) {
+                pdfButton.addEventListener('click', () => {
+                    window.print();
+                });
+            }
         });
     </script>
 
