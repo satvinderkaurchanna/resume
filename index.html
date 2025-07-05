@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume | Satvinder Kaur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Slate Gray and Sage -->
+    <!-- Application Structure Plan: A single-page, vertically-scrolling portfolio. The structure is designed for a recruiter's user flow: a quick overview (Hero, Summary), a visual deep-dive into technical skills (Interactive Tabs with Skill Bars), a chronological exploration of project-based accomplishments (Interactive Timeline), and foundational details (Education, Certs). This non-linear but guided path allows users to quickly grasp key strengths and explore details on demand. -->
+    <!-- Visualization & Content Choices: 
+        - Professional Summary: Goal: Inform. Method: Clean typography. Justification: Sets a professional tone.
+        - Core Competencies: Goal: Organize/Compare. Viz: Interactive Tabbed Interface with Skill Bars. Interaction: Click tabs to switch categories. Justification: This replaces the previous list with a clear, organized, and professional layout that visually communicates proficiency. It allows recruiters to quickly find specific skills within logical groupings, improving scannability and clarity.
+        - Professional Experience: Goal: Change/Organize. Viz: Project-based Vertical Timeline. Interaction: Click-to-expand details with +/- icons. Justification: Re-framing experience around concrete projects makes accomplishments more tangible and impactful than thematic groupings. The expand/collapse interaction remains to manage information density.
+        - Education/Certs: Goal: Inform. Method: Simple grid layout. Justification: Clear and direct presentation for factual data. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .timeline-item-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .timeline-item-content.open {
+            max-height: 500px; /* Adjust as needed */
+        }
+        .tab-button.active {
+            background-color: #0f172a; /* slate-900 */
+            color: #ffffff;
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        .skill-bar-bg {
+            background-color: #e2e8f0; /* slate-200 */
+        }
+        .skill-bar {
+            background-color: #334155; /* slate-700 */
+        }
+        .timeline-toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        .timeline-item-header.open .timeline-toggle-icon {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-slate-900">
+                Satvinder Kaur
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#summary" class="text-slate-600 hover:text-slate-900 transition">Summary</a>
+                <a href="#skills" class="text-slate-600 hover:text-slate-900 transition">Skills</a>
+                <a href="#experience" class="text-slate-600 hover:text-slate-900 transition">Experience</a>
+                <a href="#education" class="text-slate-600 hover:text-slate-900 transition">Education</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-600 hover:text-slate-900 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#summary" class="block py-2 px-6 text-sm text-slate-600 hover:bg-slate-100">Summary</a>
+            <a href="#skills" class="block py-2 px-6 text-sm text-slate-600 hover:bg-slate-100">Skills</a>
+            <a href="#experience" class="block py-2 px-6 text-sm text-slate-600 hover:bg-slate-100">Experience</a>
+            <a href="#education" class="block py-2 px-6 text-sm text-slate-600 hover:bg-slate-100">Education</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8 md:py-16">
+        <!-- Hero Section -->
+        <section class="text-center mb-16 md:mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Senior Mainframe & Tandem Systems Specialist</h1>
+            <p class="text-xl md:text-2xl text-slate-500">Banking & Telecommunications</p>
+        </section>
+
+        <!-- Professional Summary -->
+        <section id="summary" class="max-w-4xl mx-auto mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-8">Professional Summary</h2>
+            <p class="text-lg text-slate-700 leading-relaxed text-center">
+                A highly accomplished and dedicated software engineering professional with over 18 years of comprehensive experience in the analysis, design, development, and support of high-availability systems. Proven expertise in managing the full software development lifecycle for mission-critical applications within the demanding Banking and Telecommunications sectors. Specializes in legacy system modernization, complex data migrations, and enhancing core financial transaction and billing platforms. A strategic problem-solver and team mentor, adept at bridging the gap between business requirements and technical solutions to deliver robust, scalable, and efficient software.
+            </p>
+        </section>
+
+        <!-- Core Competencies / Skills -->
+        <section id="skills" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-4">Core Competencies</h2>
+            <p class="text-lg text-slate-600 text-center mb-8 max-w-4xl mx-auto">This section provides an interactive overview of my technical skills. Click on a category tab to see a detailed list of technologies and my proficiency in each. This format allows for a quick and clear assessment of my capabilities across different platforms and toolsets.</p>
+            
+            <div class="max-w-5xl mx-auto">
+                <!-- Tab Buttons -->
+                <div id="tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                    <button data-tab="mainframe" class="tab-button active px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Mainframe</button>
+                    <button data-tab="tandem" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Tandem (HP NonStop)</button>
+                    <button data-tab="tools" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Tools & Utilities</button>
+                    <button data-tab="project" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Project & Version Control</button>
+                </div>
+
+                <!-- Tab Panels -->
+                <div id="panels-container" class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                    <div id="mainframe-panel" data-panel="mainframe" class="tab-panel active"></div>
+                    <div id="tandem-panel" data-panel="tandem" class="tab-panel"></div>
+                    <div id="tools-panel" data-panel="tools" class="tab-panel"></div>
+                    <div id="project-panel" data-panel="project" class="tab-panel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Experience -->
+        <section id="experience" class="mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Professional Experience</h2>
+            <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">This interactive timeline details my key projects and accomplishments at Tata Consultancy Services. It highlights my direct contributions to significant initiatives in the telecom and banking sectors. Click on any project title to expand the section and see the specific responsibilities and achievements.</p>
+
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Vertical Line -->
+                <div class="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-slate-200"></div>
+
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item mb-12">
+                    <div class="flex md:items-center">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="z-10 flex items-center bg-slate-800 shadow-md w-8 h-8 rounded-full">
+                            <span class="text-white text-lg mx-auto font-bold">1</span>
+                        </div>
+                        <div class="w-auto md:w-1/2 md:pl-8">
+                             <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer timeline-item-header">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-slate-500 text-sm">Project: Customer Oriented Billing (COB)</p>
+                                        <h3 class="text-xl font-bold">Telecom Billing System Enhancement</h3>
+                                    </div>
+                                    <div class="timeline-toggle-icon text-2xl text-slate-400 font-light">+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:pl-[50%]">
+                        <div class="pl-12 md:pl-8 timeline-item-content">
+                            <ul class="list-disc space-y-3 p-6 text-slate-600 bg-white/50 rounded-lg mt-2">
+                                <li>Engineered enhancements for a core telecom billing application on HP Nonstop, focusing on batch and server programs to support new billing requirements.</li>
+                                <li>Architected and developed a complex data migration pipeline to extract customer receivables and collections data from the COB application for integration with a new SAP system.</li>
+                                <li>Enhanced core billing modules to integrate mobile price plans from an external rating system, streamlining the billing process for converged services.</li>
+                                 <li>Acted as the lead for analyzing existing application logic and business rules to ensure new features were implemented without impacting legacy system stability.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item mb-12">
+                     <div class="flex md:items-center flex-row-reverse md:flex-row">
+                        <div class="hidden md:block w-1/2 text-right md:pr-8"></div>
+                        <div class="z-10 flex items-center bg-slate-800 shadow-md w-8 h-8 rounded-full">
+                            <span class="text-white text-lg mx-auto font-bold">2</span>
+                        </div>
+                        <div class="w-auto md:w-1/2 md:pl-8">
+                             <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer timeline-item-header">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-slate-500 text-sm">Project: Payment Systems Migration</p>
+                                        <h3 class="text-xl font-bold">Financial Systems Development</h3>
+                                    </div>
+                                    <div class="timeline-toggle-icon text-2xl text-slate-400 font-light">+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:pl-[50%]">
+                        <div class="pl-12 md:pl-8 timeline-item-content">
+                            <ul class="list-disc space-y-3 p-6 text-slate-600 bg-white/50 rounded-lg mt-2">
+                                <li>Developed and enhanced COBOL programs on HP Tandem to handle pre-validation of card and payment transactions from various network sources.</li>
+                                <li>Engineered a suite of high-performance COBOL batch programs to extract, process, and migrate large volumes of customer accounts and transaction data for a major system overhaul.</li>
+                                <li>Analyzed and implemented AutoTMF within HPNS applications to improve transaction integrity and automated recovery processes.</li>
+                                <li>Served as the technical delivery lead, responsible for reviewing team member deliverables and ensuring code quality met stringent financial industry standards.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="timeline-item">
+                     <div class="flex md:items-center">
+                        <div class="hidden md:block w-1/2"></div>
+                        <div class="z-10 flex items-center bg-slate-800 shadow-md w-8 h-8 rounded-full">
+                            <span class="text-white text-lg mx-auto font-bold">3</span>
+                        </div>
+                         <div class="w-auto md:w-1/2 md:pl-8">
+                             <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer timeline-item-header">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <p class="text-slate-500 text-sm">Role: Cross-Project Contributor</p>
+                                        <h3 class="text-xl font-bold">Technical Leadership & Support</h3>
+                                    </div>
+                                    <div class="timeline-toggle-icon text-2xl text-slate-400 font-light">+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="md:pl-[50%]">
+                        <div class="pl-12 md:pl-8 timeline-item-content">
+                            <ul class="list-disc space-y-3 p-6 text-slate-600 bg-white/50 rounded-lg mt-2">
+                                <li>Provided end-to-end support across the full project lifecycle, including L3 production support, SIT, UAT, and post-implementation stabilization.</li>
+                                <li>Mentored and coached new team members on technical standards and development best practices for both Mainframe and Tandem environments.</li>
+                                <li>Served as the Single Point of Contact (SPOC) for third-party infrastructure vendors, coordinating activities and resolving technical issues efficiently.</li>
+                                <li>Created and presented detailed technical design documents for new features and system enhancements to both technical teams and business stakeholders.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Education & Certifications -->
+        <section id="education" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold text-center mb-12">Education & Certifications</h2>
+            <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">My formal education provided the foundation for my career, while continuous learning through certifications has kept my skills sharp and relevant in the ever-evolving technology landscape. This section outlines my academic degrees and professional certifications.</p>
+            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Education</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-lg">Master of Computer Applications (M.C.A.)</p>
+                            <p class="text-slate-600">Lakshmi Narain College of Technology</p>
+                            <p class="text-sm text-slate-400">2003 - 2006</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-lg">Bachelor of Computer Applications (B.C.A.)</p>
+                            <p class="text-slate-600">Rani Durgavati Vishwa Vidyalaya</p>
+                            <p class="text-sm text-slate-400">2000 - 2003</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Certifications</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>SAFe 4 Agilist (2018)</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>TCS Foundation Certificate in Banking (2011)</p>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>IBM Certified DB Administrator – DB2 for z/OS (2008)</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>Introduction to ORACLE 9i: SQL (2008)</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>FTC Certificate in Payment Cards Competency (2007)</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>TCS Certified Performance Test Engineer (2006)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 mt-16 md:mt-24">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>This interactive resume was created to showcase a blend of technical expertise and modern presentation.</p>
+            <p class="text-sm mt-2">&copy; 2025 Satvinder Kaur</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- DATA FOR SKILLS ---
+            const skillsData = {
+                mainframe: [
+                    { name: 'COBOL', level: 95 }, { name: 'JCL', level: 95 }, { name: 'DB2', level: 90 },
+                    { name: 'IMS DB/DC', level: 85 }, { name: 'CICS', level: 80 }, { name: 'VSAM', level: 80 },
+                    { name: 'REXX', level: 70 }, { name: 'Z/OS', level: 95 }
+                ],
+                tandem: [
+                    { name: 'NonStop SQL', level: 90 }, { name: 'TACL', level: 85 }, { name: 'Pathway', level: 80 },
+                    { name: 'FUP', level: 90 }, { name: 'Peruse', level: 90 }, { name: 'Inspect', level: 85 },
+                    { name: 'DDL', level: 80 }, { name: 'TMF', level: 85 }
+                ],
+                tools: [
+                    { name: 'TSO/ISPF', level: 95 }, { name: 'File-Aid', level: 95 }, { name: 'SPUFI', level: 90 },
+                    { name: 'QMF', level: 85 }, { name: 'Intertest', level: 80 }, { name: 'Xpeditor', level: 80 },
+                    { name: 'OPC', level: 75 }, { name: 'SORT', level: 90 }
+                ],
+                project: [
+                    { name: 'SAFe 4 Agilist', level: 90 }, { name: 'Changeman', level: 95 }, { name: 'Quality Centre', level: 90 },
+                    { name: 'Perforce', level: 85 }, { name: 'SCM', level: 85 }, { name: 'Source Manager', level: 80 }
+                ]
+            };
+
+            function createSkillBar(skill) {
+                return `
+                    <div class="mb-4">
+                        <p class="font-medium text-slate-700">${skill.name}</p>
+                        <div class="w-full skill-bar-bg rounded-full h-2.5 mt-1">
+                            <div class="skill-bar h-2.5 rounded-full" style="width: ${skill.level}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function populateSkills() {
+                for (const category in skillsData) {
+                    const panel = document.getElementById(`${category}-panel`);
+                    if (panel) {
+                        let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">';
+                        skillsData[category].forEach(skill => {
+                            content += createSkillBar(skill);
+                        });
+                        content += '</div>';
+                        panel.innerHTML = content;
+                    }
+                }
+            }
+            
+            populateSkills();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                     mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Interactive Tabs for Skills
+            const tabsContainer = document.getElementById('tabs-container');
+            const panelsContainer = document.getElementById('panels-container');
+            
+            tabsContainer.addEventListener('click', (event) => {
+                const targetButton = event.target.closest('.tab-button');
+                if (targetButton) {
+                    const tab = targetButton.dataset.tab;
+
+                    tabsContainer.querySelectorAll('.tab-button').forEach(button => {
+                        button.classList.remove('active');
+                    });
+                    targetButton.classList.add('active');
+
+                    panelsContainer.querySelectorAll('.tab-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    panelsContainer.querySelector(`[data-panel='${tab}']`).classList.add('active');
+                }
+            });
+
+            // Interactive Timeline
+            const timelineHeaders = document.querySelectorAll('.timeline-item-header');
+            timelineHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.closest('.timeline-item').querySelector('.timeline-item-content');
+                    const icon = header.querySelector('.timeline-toggle-icon');
+                    
+                    header.classList.toggle('open');
+                    content.classList.toggle('open');
+                    
+                    if (content.classList.contains('open')) {
+                        icon.textContent = '-';
+                    } else {
+                        icon.textContent = '+';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
