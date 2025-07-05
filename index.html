@@ -46,6 +46,10 @@
             border-bottom-width: 1px;
             border-color: #e2e8f0; /* border-slate-200 */
         }
+        @page {
+            size: A4;
+            margin: 0.5in;
+        }
         @media print {
             html, body {
                 font-size: 10pt;
@@ -57,25 +61,28 @@
                 display: none !important;
             }
             main {
-                padding: 1in !important;
+                padding: 0 !important;
                 margin: 0 !important;
                 width: 100% !important;
                 max-width: 100% !important;
             }
             section {
-                margin-bottom: 2rem !important;
-                padding-top: 0 !important;
+                margin-bottom: 1.5rem !important;
+                padding-top: 1.5rem !important;
                 page-break-inside: avoid;
+            }
+            .hero-section {
+                display: none !important;
             }
             .print-header {
                 display: block !important;
                 text-align: center;
                 border-bottom: 2px solid #e2e8f0;
                 padding-bottom: 1rem;
-                margin-bottom: 2rem;
+                margin-bottom: 1.5rem;
             }
             .print-header h1 {
-                font-size: 24pt;
+                font-size: 22pt;
                 font-weight: bold;
                 margin-bottom: 0.5rem;
             }
@@ -91,7 +98,7 @@
                 margin-top: 0.5rem;
             }
             .section-title {
-                font-size: 14pt !important;
+                font-size: 16pt !important;
                 font-weight: bold !important;
                 border-bottom: 1px solid #e2e8f0 !important;
                 padding-bottom: 0.5rem !important;
@@ -120,6 +127,7 @@
             #skills .tab-panel {
                 border: 1px solid #e2e8f0;
                 padding: 1rem !important;
+                margin-bottom: 1rem;
             }
             #experience .tab-panel {
                  margin-bottom: 1.5rem;
@@ -176,7 +184,7 @@
         </div>
 
         <!-- Hero Section -->
-        <section class="text-center mb-16 md:mb-24">
+        <section class="hero-section text-center mb-16 md:mb-24">
             <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Satvinder Kaur Channa</h1>
             <p class="text-xl md:text-2xl text-slate-500">Senior Mainframe & Tandem Systems Specialist</p>
             
