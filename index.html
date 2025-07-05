@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Resume | Satvinder Kaur</title>
+    <title>Interactive Resume | Satvinder Kaur Channa</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,16 @@
         }
         .modal-content {
             transition: transform 0.3s ease;
+        }
+        .section-title {
+            font-size: 1.875rem; /* text-3xl */
+            line-height: 2.25rem;
+            font-weight: 700;
+            color: #1e293b; /* slate-800 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            padding-bottom: 0.75rem; /* pb-3 */
+            border-bottom-width: 1px;
+            border-color: #e2e8f0; /* border-slate-200 */
         }
         @media print {
             html, body {
@@ -83,13 +93,14 @@
                 font-size: 10pt;
                 margin-top: 0.5rem;
             }
-            .section-title-print {
-                font-size: 14pt;
-                font-weight: bold;
-                border-bottom: 1px solid #e2e8f0;
-                padding-bottom: 0.5rem;
-                margin-bottom: 1rem;
-                text-align: left;
+            .section-title {
+                font-size: 14pt !important;
+                font-weight: bold !important;
+                border-bottom: 1px solid #e2e8f0 !important;
+                padding-bottom: 0.5rem !important;
+                margin-bottom: 1rem !important;
+                text-align: left !important;
+                color: #000 !important;
             }
             .tab-panel {
                 display: block !important;
@@ -101,15 +112,13 @@
                 box-shadow: none !important;
                 border: none !important;
             }
-            h2 {
-                display: none;
-            }
-            section > p {
+            section > p.section-intro {
                 display: none;
             }
             #summary p {
                 display: block;
                 text-align: left;
+                margin-bottom: 1rem;
             }
             #skills .tab-panel {
                 border: 1px solid #e2e8f0;
@@ -136,7 +145,7 @@
     <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-slate-900">
-                Satvinder Kaur
+                Satvinder Kaur Channa
             </div>
             <div class="hidden md:flex space-x-8">
                 <a href="#summary" class="text-slate-600 hover:text-slate-900 transition">Summary</a>
@@ -171,8 +180,8 @@
 
         <!-- Hero Section -->
         <section class="text-center mb-16 md:mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Senior Mainframe & Tandem Systems Specialist</h1>
-            <p class="text-xl md:text-2xl text-slate-500">Banking & Telecommunications</p>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-4">Satvinder Kaur Channa</h1>
+            <p class="text-xl md:text-2xl text-slate-500">Senior Mainframe & Tandem Systems Specialist</p>
             
             <div id="hero-buttons" class="mt-8 flex flex-col justify-center items-center gap-6">
                 <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-slate-600">
@@ -203,21 +212,24 @@
         </section>
 
         <!-- Professional Summary -->
-        <section id="summary" class="max-w-4xl mx-auto mb-16 md:mb-24 scroll-mt-20">
-            <h2 class="section-title-print">Professional Summary</h2>
-            <p class="text-lg text-slate-700 leading-relaxed text-center">
-                A highly accomplished and dedicated software engineering professional with over 18 years of comprehensive experience in the analysis, design, development, and support of high-availability systems. Proven expertise in managing the full software development lifecycle for mission-critical applications within the demanding Banking and Telecommunications sectors. Specializes in legacy system modernization, complex data migrations, and enhancing core financial transaction and billing platforms. A strategic problem-solver and team mentor, adept at bridging the gap between business requirements and technical solutions to deliver robust, scalable, and efficient software.
-            </p>
+        <section id="summary" class="max-w-5xl mx-auto mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="text-lg text-slate-700 leading-relaxed space-y-4">
+                <p>My career as a developer spans over 18 years, a journey built on a passion for creating reliable and effective software. A significant portion of this experience has been focused specifically on the demanding environments of Banking and Telecom financial systems. It's in these complex domains – where performance, accuracy, and compliance are critical – that I've honed my skills and developed a deep understanding of the unique technical challenges involved.</p>
+                <p>Over nearly two decades, I've tackled a wide array of development projects within financial technology, gaining hands-on experience with the core systems that power financial transactions and operations in these sectors. This extensive background has equipped me with the knowledge to not only write code but to understand the broader system architecture, security considerations, and business logic essential for success in this niche.</p>
+                <p>Moving forward, my focus remains on technical excellence in software development, particularly within or related to the financial sector. I am actively seeking opportunities where I can apply my substantial expertise, continue to grow my technical capabilities, and contribute to significant projects. My aim is to excel in roles that are both technically rewarding and offer compensation reflective of the specialized value and extensive experience I bring to the table.</p>
+                <p>Let's connect if you're interested in discussing financial systems development, Banking/Telecom technology, or opportunities where over 18 years of dedicated experience can make a difference.</p>
+            </div>
         </section>
 
         <!-- Core Competencies / Skills -->
-        <section id="skills" class="mb-16 md:mb-24 scroll-mt-20">
-            <h2 class="section-title-print">Core Competencies</h2>
-            <p class="text-lg text-slate-600 text-center mb-8 max-w-4xl mx-auto">This section provides an interactive overview of my technical skills. Click on a category tab to see a detailed list of technologies. This format allows for a quick and clear assessment of my capabilities across different platforms and toolsets.</p>
+        <section id="skills" class="max-w-5xl mx-auto mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="section-title">Core Competencies</h2>
+            <p class="section-intro text-lg text-slate-600 mb-8">This section provides an interactive overview of my technical skills. Click on a category tab to see a detailed list of technologies. This format allows for a quick and clear assessment of my capabilities across different platforms and toolsets.</p>
             
             <div class="max-w-5xl mx-auto">
                 <!-- Tab Buttons -->
-                <div id="skills-tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <div id="skills-tabs-container" class="flex flex-wrap gap-2 md:gap-4 mb-8">
                     <button data-tab="mainframe" class="tab-button active px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Mainframe</button>
                     <button data-tab="tandem" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Tandem (HP NonStop)</button>
                     <button data-tab="project" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Project & Version Control</button>
@@ -233,42 +245,45 @@
         </section>
 
         <!-- Professional Experience -->
-        <section id="experience" class="mb-16 md:mb-24 scroll-mt-20">
-            <h2 class="section-title-print">Professional Experience</h2>
-            <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">This section details my key projects and accomplishments at Tata Consultancy Services. Click on a project tab to explore my direct contributions to significant initiatives in the telecom and banking sectors.</p>
+        <section id="experience" class="max-w-5xl mx-auto mb-16 md:mb-24 scroll-mt-20">
+            <h2 class="section-title">Professional Experience</h2>
+            <p class="section-intro text-lg text-slate-600 mb-8">This section details my key projects and accomplishments at Tata Consultancy Services. Click on a project tab to explore my direct contributions to significant initiatives in the telecom and banking sectors.</p>
             
             <div class="max-w-5xl mx-auto">
                  <!-- Experience Tab Buttons -->
-                <div id="experience-tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
-                    <button data-tab="billing" class="tab-button active px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Telecom Billing Enhancement</button>
-                    <button data-tab="financial" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Financial Systems Development</button>
-                    <button data-tab="leadership" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Technical Leadership</button>
+                <div id="experience-tabs-container" class="flex flex-wrap gap-2 md:gap-4 mb-8">
+                    <button data-tab="development" class="tab-button active px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Application Development & Migration</button>
+                    <button data-tab="analysis" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Analysis, Design & Support</button>
+                    <button data-tab="leadership" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Project & Team Collaboration</button>
                 </div>
 
                 <!-- Experience Tab Panels -->
                 <div id="experience-panels-container" class="bg-white p-6 md:p-8 rounded-lg shadow-md">
-                    <div data-panel="billing" class="tab-panel active">
+                    <div data-panel="development" class="tab-panel active">
                         <ul class="list-disc space-y-3 pl-5 text-slate-700 leading-relaxed">
-                            <li>Engineered enhancements for a core telecom billing application on HP Nonstop, focusing on batch and server programs to support new billing requirements.</li>
-                            <li>Architected and developed a complex data migration pipeline to extract customer receivables and collections data from the COB application for integration with a new SAP system.</li>
-                            <li>Enhanced core billing modules to integrate mobile price plans from an external rating system, streamlining the billing process for converged services.</li>
-                            <li>Acted as the lead for analyzing existing application logic and business rules to ensure new features were implemented without impacting legacy system stability.</li>
+                            <li>Developed, maintained, and enhanced mission-critical applications on the HP Tandem (Nonstop) platform using COBOL, JCL, Nonstop SQL, and Enscribe files.</li>
+                            <li>Coded new and modified existing batch programs, online services, and server programs to support high-volume telecom billing and financial transaction processing.</li>
+                            <li>Engineered a series of high-performance COBOL batch programs to extract, process, and migrate critical customer data—including accounts, transactions, and receivables—to new systems like SAP.</li>
+                            <li>Enhanced core billing modules to integrate and migrate mobile price plans from external rating systems, creating a unified billing platform.</li>
+                            <li>Developed and solely managed a reporting application using TACL script, creating multiple automated reports for Business & Finance departments.</li>
                         </ul>
                     </div>
-                    <div data-panel="financial" class="tab-panel">
+                    <div data-panel="analysis" class="tab-panel">
                          <ul class="list-disc space-y-3 pl-5 text-slate-700 leading-relaxed">
-                            <li>Developed and enhanced COBOL programs on HP Tandem to handle pre-validation of card and payment transactions from various network sources.</li>
-                            <li>Engineered a suite of high-performance COBOL batch programs to extract, process, and migrate large volumes of customer accounts and transaction data for a major system overhaul.</li>
-                            <li>Analyzed and implemented AutoTMF within HPNS applications to improve transaction integrity and automated recovery processes.</li>
-                            <li>Served as the technical delivery lead, responsible for reviewing team member deliverables and ensuring code quality met stringent financial industry standards.</li>
+                            <li>Interacted with clients, product owners, Subject Matter Experts (SMEs), and analysts to gather, document, and understand complex business requirements.</li>
+                            <li>Analyzed existing application processing flows and business rules to inform development and ensure the integrity of legacy systems during enhancement projects.</li>
+                            <li>Created high-level, low-level, and detailed technical design documents for new features and system enhancements.</li>
+                            <li>Provided end-to-end support across the project lifecycle, including L3 production support, System Integration Testing (SIT), User Acceptance Testing (UAT), deployment, and post-implementation support.</li>
+                             <li>Analyzed and implemented specialized applications like AutoTMF in HPNS and provided dedicated support for critical processes like NETS testing.</li>
                         </ul>
                     </div>
                     <div data-panel="leadership" class="tab-panel">
                         <ul class="list-disc space-y-3 pl-5 text-slate-700 leading-relaxed">
-                            <li>Provided end-to-end support across the full project lifecycle, including L3 production support, SIT, UAT, and post-implementation stabilization.</li>
-                            <li>Mentored and coached new team members on technical standards and development best practices for both Mainframe and Tandem environments.</li>
-                            <li>Served as the Single Point of Contact (SPOC) for third-party infrastructure vendors, coordinating activities and resolving technical issues efficiently.</li>
-                            <li>Created and presented detailed technical design documents for new features and system enhancements to both technical teams and business stakeholders.</li>
+                            <li>Responsible for delivering project milestones and reviewing the code and deliverables of team members to ensure quality and adherence to standards.</li>
+                            <li>Served as the Single Point of Contact (SPOC) for third-party infrastructure support vendors, coordinating activities and resolving integration issues.</li>
+                            <li>Facilitated regular status meetings with project sponsors, development teams, and business stakeholders to ensure alignment and clear communication.</li>
+                            <li>Managed automated execution of jobs and reports using a batch scheduler, ensuring timely delivery of critical data.</li>
+                             <li>Mentored and trained new joiners in the team, bringing them up to speed on technical platforms and project-specific knowledge.</li>
                         </ul>
                     </div>
                 </div>
@@ -277,13 +292,13 @@
 
 
         <!-- Education & Certifications -->
-        <section id="education" class="scroll-mt-20">
-            <h2 class="section-title-print">Education & Certifications</h2>
-            <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">My formal education provided the foundation for my career, while continuous learning through certifications has kept my skills sharp and relevant in the ever-evolving technology landscape. This section outlines my academic degrees and professional certifications.</p>
-            <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12">
+        <section id="education" class="max-w-5xl mx-auto scroll-mt-20">
+            <h2 class="section-title">Education & Certifications</h2>
+            <p class="section-intro text-lg text-slate-600 mb-8">My formal education provided the foundation for my career, while continuous learning through certifications has kept my skills sharp and relevant in the ever-evolving technology landscape. This section outlines my academic degrees and professional certifications.</p>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
                 
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Education</h3>
+                    <h3 class="text-2xl font-bold mb-6">Education</h3>
                     <div class="space-y-6">
                         <div class="bg-white p-6 rounded-lg shadow-sm">
                             <p class="font-bold text-lg">Master of Computer Applications (M.C.A.)</p>
@@ -299,7 +314,7 @@
                 </div>
 
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Certifications</h3>
+                    <h3 class="text-2xl font-bold mb-6">Certifications</h3>
                     <div class="space-y-4">
                         <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
                              <span class="text-slate-500">&#10003;</span>
@@ -338,8 +353,7 @@
 
     <footer class="bg-slate-800 text-slate-300 mt-16 md:mt-24">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>This interactive resume was created to showcase a blend of technical expertise and modern presentation.</p>
-            <p class="text-sm mt-2">&copy; 2025 Satvinder Kaur</p>
+            <p class="text-sm mt-2">&copy; 2025 Satvinder Kaur Channa</p>
         </div>
     </footer>
 
@@ -456,7 +470,7 @@
                     e.preventDefault();
                     const user = 'kaur2211';
                     const domain = 'gmail.com';
-                    const subject = encodeURIComponent("Opportunity Inquiry - Satvinder Kaur's Resume");
+                    const subject = encodeURIComponent("Opportunity Inquiry - Satvinder Kaur Channa's Resume");
                     const body = encodeURIComponent("Hello Satvinder,\n\nI came across your interactive resume and am impressed with your experience. I would like to discuss a potential opportunity.\n\nPlease let me know a good time to connect.\n\nBest regards,");
                     window.location.href = `mailto:${user}@${domain}?subject=${subject}&body=${body}`;
                 });
@@ -525,8 +539,8 @@
                 webShareButton.addEventListener('click', async () => {
                     try {
                         await navigator.share({
-                            title: 'Interactive Resume | Satvinder Kaur',
-                            text: 'Check out this interactive resume for Satvinder Kaur.',
+                            title: 'Interactive Resume | Satvinder Kaur Channa',
+                            text: 'Check out this interactive resume for Satvinder Kaur Channa.',
                             url: window.location.href,
                         });
                     } catch (err) {
