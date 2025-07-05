@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Slate Gray and Sage -->
-    <!-- Application Structure Plan: A single-page, vertically-scrolling portfolio. The structure is designed for a recruiter's user flow: a quick overview (Hero, Summary), a visual deep-dive into technical skills (Interactive Tabs with Skill Bars), a chronological exploration of project-based accomplishments (Interactive Timeline), and foundational details (Education, Certs). This non-linear but guided path allows users to quickly grasp key strengths and explore details on demand. -->
+    <!-- Application Structure Plan: A single-page, vertically-scrolling portfolio. The structure is designed for a recruiter's user flow: a quick overview (Hero, Summary), a visual deep-dive into technical skills (Interactive Tabs with Skill Tags), a chronological exploration of project-based accomplishments (Horizontal Interactive Tabs), and foundational details (Education, Certs). This non-linear but guided path allows users to quickly grasp key strengths and explore details on demand. -->
     <!-- Visualization & Content Choices: 
         - Professional Summary: Goal: Inform. Method: Clean typography. Justification: Sets a professional tone.
-        - Core Competencies: Goal: Organize/Compare. Viz: Interactive Tabbed Interface with Skill Bars. Interaction: Click tabs to switch categories. Justification: This replaces the previous list with a clear, organized, and professional layout that visually communicates proficiency. It allows recruiters to quickly find specific skills within logical groupings, improving scannability and clarity.
-        - Professional Experience: Goal: Change/Organize. Viz: Project-based Vertical Timeline. Interaction: Click-to-expand details with +/- icons. Justification: Re-framing experience around concrete projects makes accomplishments more tangible and impactful than thematic groupings. The expand/collapse interaction remains to manage information density.
+        - Core Competencies: Goal: Organize/Compare. Viz: Interactive Tabbed Interface with clean Skill Tags. Interaction: Click tabs to switch categories. Justification: This layout is visually cleaner, removes the complexity of a legend, and is highly scannable for recruiters.
+        - Professional Experience: Goal: Change/Organize. Viz: Horizontal Tabbed Interface for Projects. Interaction: Click tabs to view project details. Justification: Replaces the vertical timeline with a more compact and modern horizontal navigation, allowing users to switch between key projects without scrolling. This improves usability and visual appeal.
         - Education/Certs: Goal: Inform. Method: Simple grid layout. Justification: Clear and direct presentation for factual data. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -22,14 +22,6 @@
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* slate-50 */
             color: #1e293b; /* slate-800 */
-        }
-        .timeline-item-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .timeline-item-content.open {
-            max-height: 500px; /* Adjust as needed */
         }
         .tab-button.active {
             background-color: #0f172a; /* slate-900 */
@@ -40,18 +32,6 @@
         }
         .tab-panel.active {
             display: block;
-        }
-        .skill-bar-bg {
-            background-color: #e2e8f0; /* slate-200 */
-        }
-        .skill-bar {
-            background-color: #334155; /* slate-700 */
-        }
-        .timeline-toggle-icon {
-            transition: transform 0.3s ease;
-        }
-        .timeline-item-header.open .timeline-toggle-icon {
-            transform: rotate(45deg);
         }
     </style>
 </head>
@@ -101,22 +81,20 @@
         <!-- Core Competencies / Skills -->
         <section id="skills" class="mb-16 md:mb-24 scroll-mt-20">
             <h2 class="text-3xl font-bold text-center mb-4">Core Competencies</h2>
-            <p class="text-lg text-slate-600 text-center mb-8 max-w-4xl mx-auto">This section provides an interactive overview of my technical skills. Click on a category tab to see a detailed list of technologies and my proficiency in each. This format allows for a quick and clear assessment of my capabilities across different platforms and toolsets.</p>
+            <p class="text-lg text-slate-600 text-center mb-8 max-w-4xl mx-auto">This section provides an interactive overview of my technical skills. Click on a category tab to see a detailed list of technologies. This format allows for a quick and clear assessment of my capabilities across different platforms and toolsets.</p>
             
             <div class="max-w-5xl mx-auto">
                 <!-- Tab Buttons -->
-                <div id="tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <div id="skills-tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
                     <button data-tab="mainframe" class="tab-button active px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Mainframe</button>
                     <button data-tab="tandem" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Tandem (HP NonStop)</button>
-                    <button data-tab="tools" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Tools & Utilities</button>
                     <button data-tab="project" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Project & Version Control</button>
                 </div>
 
                 <!-- Tab Panels -->
-                <div id="panels-container" class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                <div id="skills-panels-container" class="bg-white p-6 md:p-8 rounded-lg shadow-md min-h-[150px]">
                     <div id="mainframe-panel" data-panel="mainframe" class="tab-panel active"></div>
                     <div id="tandem-panel" data-panel="tandem" class="tab-panel"></div>
-                    <div id="tools-panel" data-panel="tools" class="tab-panel"></div>
                     <div id="project-panel" data-panel="project" class="tab-panel"></div>
                 </div>
             </div>
@@ -125,102 +103,41 @@
         <!-- Professional Experience -->
         <section id="experience" class="mb-16 md:mb-24 scroll-mt-20">
             <h2 class="text-3xl font-bold text-center mb-12">Professional Experience</h2>
-            <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">This interactive timeline details my key projects and accomplishments at Tata Consultancy Services. It highlights my direct contributions to significant initiatives in the telecom and banking sectors. Click on any project title to expand the section and see the specific responsibilities and achievements.</p>
-
-            <div class="relative max-w-4xl mx-auto">
-                <!-- Vertical Line -->
-                <div class="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-slate-200"></div>
-
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item mb-12">
-                    <div class="flex md:items-center">
-                        <div class="hidden md:block w-1/2"></div>
-                        <div class="z-10 flex items-center bg-slate-800 shadow-md w-8 h-8 rounded-full">
-                            <span class="text-white text-lg mx-auto font-bold">1</span>
-                        </div>
-                        <div class="w-auto md:w-1/2 md:pl-8">
-                             <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer timeline-item-header">
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <p class="text-slate-500 text-sm">Project: Customer Oriented Billing (COB)</p>
-                                        <h3 class="text-xl font-bold">Telecom Billing System Enhancement</h3>
-                                    </div>
-                                    <div class="timeline-toggle-icon text-2xl text-slate-400 font-light">+</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="md:pl-[50%]">
-                        <div class="pl-12 md:pl-8 timeline-item-content">
-                            <ul class="list-disc space-y-3 p-6 text-slate-600 bg-white/50 rounded-lg mt-2">
-                                <li>Engineered enhancements for a core telecom billing application on HP Nonstop, focusing on batch and server programs to support new billing requirements.</li>
-                                <li>Architected and developed a complex data migration pipeline to extract customer receivables and collections data from the COB application for integration with a new SAP system.</li>
-                                <li>Enhanced core billing modules to integrate mobile price plans from an external rating system, streamlining the billing process for converged services.</li>
-                                 <li>Acted as the lead for analyzing existing application logic and business rules to ensure new features were implemented without impacting legacy system stability.</li>
-                            </ul>
-                        </div>
-                    </div>
+            <p class="text-lg text-slate-600 text-center mb-12 max-w-4xl mx-auto">This section details my key projects and accomplishments at Tata Consultancy Services. Click on a project tab to explore my direct contributions to significant initiatives in the telecom and banking sectors.</p>
+            
+            <div class="max-w-5xl mx-auto">
+                 <!-- Experience Tab Buttons -->
+                <div id="experience-tabs-container" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                    <button data-tab="billing" class="tab-button active px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Telecom Billing Enhancement</button>
+                    <button data-tab="financial" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Financial Systems Development</button>
+                    <button data-tab="leadership" class="tab-button px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition">Technical Leadership</button>
                 </div>
 
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item mb-12">
-                     <div class="flex md:items-center flex-row-reverse md:flex-row">
-                        <div class="hidden md:block w-1/2 text-right md:pr-8"></div>
-                        <div class="z-10 flex items-center bg-slate-800 shadow-md w-8 h-8 rounded-full">
-                            <span class="text-white text-lg mx-auto font-bold">2</span>
-                        </div>
-                        <div class="w-auto md:w-1/2 md:pl-8">
-                             <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer timeline-item-header">
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <p class="text-slate-500 text-sm">Project: Payment Systems Migration</p>
-                                        <h3 class="text-xl font-bold">Financial Systems Development</h3>
-                                    </div>
-                                    <div class="timeline-toggle-icon text-2xl text-slate-400 font-light">+</div>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Experience Tab Panels -->
+                <div id="experience-panels-container" class="bg-white p-6 md:p-8 rounded-lg shadow-md">
+                    <div data-panel="billing" class="tab-panel active">
+                        <ul class="list-disc space-y-3 pl-5 text-slate-700 leading-relaxed">
+                            <li>Engineered enhancements for a core telecom billing application on HP Nonstop, focusing on batch and server programs to support new billing requirements.</li>
+                            <li>Architected and developed a complex data migration pipeline to extract customer receivables and collections data from the COB application for integration with a new SAP system.</li>
+                            <li>Enhanced core billing modules to integrate mobile price plans from an external rating system, streamlining the billing process for converged services.</li>
+                            <li>Acted as the lead for analyzing existing application logic and business rules to ensure new features were implemented without impacting legacy system stability.</li>
+                        </ul>
                     </div>
-                    <div class="md:pl-[50%]">
-                        <div class="pl-12 md:pl-8 timeline-item-content">
-                            <ul class="list-disc space-y-3 p-6 text-slate-600 bg-white/50 rounded-lg mt-2">
-                                <li>Developed and enhanced COBOL programs on HP Tandem to handle pre-validation of card and payment transactions from various network sources.</li>
-                                <li>Engineered a suite of high-performance COBOL batch programs to extract, process, and migrate large volumes of customer accounts and transaction data for a major system overhaul.</li>
-                                <li>Analyzed and implemented AutoTMF within HPNS applications to improve transaction integrity and automated recovery processes.</li>
-                                <li>Served as the technical delivery lead, responsible for reviewing team member deliverables and ensuring code quality met stringent financial industry standards.</li>
-                            </ul>
-                        </div>
+                    <div data-panel="financial" class="tab-panel">
+                         <ul class="list-disc space-y-3 pl-5 text-slate-700 leading-relaxed">
+                            <li>Developed and enhanced COBOL programs on HP Tandem to handle pre-validation of card and payment transactions from various network sources.</li>
+                            <li>Engineered a suite of high-performance COBOL batch programs to extract, process, and migrate large volumes of customer accounts and transaction data for a major system overhaul.</li>
+                            <li>Analyzed and implemented AutoTMF within HPNS applications to improve transaction integrity and automated recovery processes.</li>
+                            <li>Served as the technical delivery lead, responsible for reviewing team member deliverables and ensuring code quality met stringent financial industry standards.</li>
+                        </ul>
                     </div>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item">
-                     <div class="flex md:items-center">
-                        <div class="hidden md:block w-1/2"></div>
-                        <div class="z-10 flex items-center bg-slate-800 shadow-md w-8 h-8 rounded-full">
-                            <span class="text-white text-lg mx-auto font-bold">3</span>
-                        </div>
-                         <div class="w-auto md:w-1/2 md:pl-8">
-                             <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer timeline-item-header">
-                                <div class="flex justify-between items-center">
-                                    <div>
-                                        <p class="text-slate-500 text-sm">Role: Cross-Project Contributor</p>
-                                        <h3 class="text-xl font-bold">Technical Leadership & Support</h3>
-                                    </div>
-                                    <div class="timeline-toggle-icon text-2xl text-slate-400 font-light">+</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="md:pl-[50%]">
-                        <div class="pl-12 md:pl-8 timeline-item-content">
-                            <ul class="list-disc space-y-3 p-6 text-slate-600 bg-white/50 rounded-lg mt-2">
-                                <li>Provided end-to-end support across the full project lifecycle, including L3 production support, SIT, UAT, and post-implementation stabilization.</li>
-                                <li>Mentored and coached new team members on technical standards and development best practices for both Mainframe and Tandem environments.</li>
-                                <li>Served as the Single Point of Contact (SPOC) for third-party infrastructure vendors, coordinating activities and resolving technical issues efficiently.</li>
-                                <li>Created and presented detailed technical design documents for new features and system enhancements to both technical teams and business stakeholders.</li>
-                            </ul>
-                        </div>
+                    <div data-panel="leadership" class="tab-panel">
+                        <ul class="list-disc space-y-3 pl-5 text-slate-700 leading-relaxed">
+                            <li>Provided end-to-end support across the full project lifecycle, including L3 production support, SIT, UAT, and post-implementation stabilization.</li>
+                            <li>Mentored and coached new team members on technical standards and development best practices for both Mainframe and Tandem environments.</li>
+                            <li>Served as the Single Point of Contact (SPOC) for third-party infrastructure vendors, coordinating activities and resolving technical issues efficiently.</li>
+                            <li>Created and presented detailed technical design documents for new features and system enhancements to both technical teams and business stakeholders.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -252,6 +169,10 @@
                 <div>
                     <h3 class="text-2xl font-bold mb-6 text-center md:text-left">Certifications</h3>
                     <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
+                             <span class="text-slate-500">&#10003;</span>
+                             <p>Certificate in Digital Banking from IIBF (Indian Institute of Banking & Finance)</p>
+                        </div>
                         <div class="bg-white p-4 rounded-lg shadow-sm flex items-center space-x-4">
                              <span class="text-slate-500">&#10003;</span>
                              <p>SAFe 4 Agilist (2018)</p>
@@ -295,44 +216,31 @@
             // --- DATA FOR SKILLS ---
             const skillsData = {
                 mainframe: [
-                    { name: 'COBOL', level: 95 }, { name: 'JCL', level: 95 }, { name: 'DB2', level: 90 },
-                    { name: 'IMS DB/DC', level: 85 }, { name: 'CICS', level: 80 }, { name: 'VSAM', level: 80 },
-                    { name: 'REXX', level: 70 }, { name: 'Z/OS', level: 95 }
+                    'COBOL', 'JCL', 'DB2', 'IMS DB', 'CICS', 'VSAM', 'REXX', 'Z/OS',
+                    'TSO/ISPF', 'File-Aid', 'SPUFI', 'QMF', 'Intertest', 'Xpeditor',
+                    'OPC', 'SORT'
                 ],
                 tandem: [
-                    { name: 'NonStop SQL', level: 90 }, { name: 'TACL', level: 85 }, { name: 'Pathway', level: 80 },
-                    { name: 'FUP', level: 90 }, { name: 'Peruse', level: 90 }, { name: 'Inspect', level: 85 },
-                    { name: 'DDL', level: 80 }, { name: 'TMF', level: 85 }
-                ],
-                tools: [
-                    { name: 'TSO/ISPF', level: 95 }, { name: 'File-Aid', level: 95 }, { name: 'SPUFI', level: 90 },
-                    { name: 'QMF', level: 85 }, { name: 'Intertest', level: 80 }, { name: 'Xpeditor', level: 80 },
-                    { name: 'OPC', level: 75 }, { name: 'SORT', level: 90 }
+                    'COBOL', 'NonStop SQL', 'TACL', 'Pathway', 'FUP', 'Peruse',
+                    'Inspect', 'DDL', 'TMF'
                 ],
                 project: [
-                    { name: 'SAFe 4 Agilist', level: 90 }, { name: 'Changeman', level: 95 }, { name: 'Quality Centre', level: 90 },
-                    { name: 'Perforce', level: 85 }, { name: 'SCM', level: 85 }, { name: 'Source Manager', level: 80 }
+                    'JIRA', 'Changeman', 'Quality Centre', 'Perforce', 'SCM', 'Source Manager'
                 ]
             };
 
-            function createSkillBar(skill) {
-                return `
-                    <div class="mb-4">
-                        <p class="font-medium text-slate-700">${skill.name}</p>
-                        <div class="w-full skill-bar-bg rounded-full h-2.5 mt-1">
-                            <div class="skill-bar h-2.5 rounded-full" style="width: ${skill.level}%"></div>
-                        </div>
-                    </div>
-                `;
+            function createSkillTag(skill) {
+                return `<span class="bg-slate-200 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-full">${skill}</span>`;
             }
 
             function populateSkills() {
                 for (const category in skillsData) {
                     const panel = document.getElementById(`${category}-panel`);
                     if (panel) {
-                        let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">';
+                        let content = '<div class="flex flex-wrap gap-3">';
+                        skillsData[category].sort();
                         skillsData[category].forEach(skill => {
-                            content += createSkillBar(skill);
+                            content += createSkillTag(skill);
                         });
                         content += '</div>';
                         panel.innerHTML = content;
@@ -355,44 +263,34 @@
                 });
             });
 
-            // Interactive Tabs for Skills
-            const tabsContainer = document.getElementById('tabs-container');
-            const panelsContainer = document.getElementById('panels-container');
-            
-            tabsContainer.addEventListener('click', (event) => {
-                const targetButton = event.target.closest('.tab-button');
-                if (targetButton) {
-                    const tab = targetButton.dataset.tab;
+            // Generic Tab Switcher Logic
+            function setupTabs(tabsContainerId, panelsContainerId) {
+                const tabsContainer = document.getElementById(tabsContainerId);
+                const panelsContainer = document.getElementById(panelsContainerId);
 
-                    tabsContainer.querySelectorAll('.tab-button').forEach(button => {
-                        button.classList.remove('active');
-                    });
-                    targetButton.classList.add('active');
+                if(tabsContainer && panelsContainer) {
+                    tabsContainer.addEventListener('click', (event) => {
+                        const targetButton = event.target.closest('.tab-button');
+                        if (targetButton) {
+                            const tab = targetButton.dataset.tab;
 
-                    panelsContainer.querySelectorAll('.tab-panel').forEach(panel => {
-                        panel.classList.remove('active');
+                            tabsContainer.querySelectorAll('.tab-button').forEach(button => {
+                                button.classList.remove('active');
+                            });
+                            targetButton.classList.add('active');
+
+                            panelsContainer.querySelectorAll('.tab-panel').forEach(panel => {
+                                panel.classList.remove('active');
+                            });
+                            panelsContainer.querySelector(`[data-panel='${tab}']`).classList.add('active');
+                        }
                     });
-                    panelsContainer.querySelector(`[data-panel='${tab}']`).classList.add('active');
                 }
-            });
+            }
 
-            // Interactive Timeline
-            const timelineHeaders = document.querySelectorAll('.timeline-item-header');
-            timelineHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.closest('.timeline-item').querySelector('.timeline-item-content');
-                    const icon = header.querySelector('.timeline-toggle-icon');
-                    
-                    header.classList.toggle('open');
-                    content.classList.toggle('open');
-                    
-                    if (content.classList.contains('open')) {
-                        icon.textContent = '-';
-                    } else {
-                        icon.textContent = '+';
-                    }
-                });
-            });
+            // Setup both tab sections
+            setupTabs('skills-tabs-container', 'skills-panels-container');
+            setupTabs('experience-tabs-container', 'experience-panels-container');
         });
     </script>
 
